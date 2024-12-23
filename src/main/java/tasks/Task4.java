@@ -15,13 +15,19 @@ FYI - DTO = Data Transfer Object - распространенный паттер
  */
 public class Task4 {
 
-  private final PersonConverter personConverter;
+    private final PersonConverter personConverter;
 
-  public Task4(PersonConverter personConverter) {
-    this.personConverter = personConverter;
-  }
+    public Task4(PersonConverter personConverter) {
+        this.personConverter = personConverter;
+    }
 
-  public List<ApiPersonDto> convert(List<Person> persons) {
-    return new ArrayList<>();
-  }
+    public List<ApiPersonDto> convert(List<Person> persons) {
+        // Создаю пустой список
+        List<ApiPersonDto> ConvertedPersons = new ArrayList<ApiPersonDto>();
+        //Конвертирую объекты типа person в ApiPersonDto - O(persons.size())
+        for(Person person : persons){
+            ConvertedPersons.add(personConverter.convert(person));
+        }
+        return ConvertedPersons;
+    }
 }
